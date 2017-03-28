@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "117943605976",
+    "firebase_url": "https://u-vote-1f66c.firebaseio.com",
+    "project_id": "u-vote-1f66c",
+    "storage_bucket": "u-vote-1f66c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:117943605976:android:ebe492f8f802fd4c",
+        "android_client_info": {
+          "package_name": "uvote.app.raghav.com.uvote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "117943605976-h34ebq0ciavk2tguvlv6m7bhii3llbqc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uvote.app.raghav.com.uvote",
+            "certificate_hash": "cf50fcaadbbb8f8b6460291ce878c8291bb53383"
+          }
+        },
+        {
+          "client_id": "117943605976-ggjfe4rejb4cva28j9e2vruj9kf2mr1e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uvote.app.raghav.com.uvote",
+            "certificate_hash": "331ada82d0c63d9136e7e6087b3d7817c5495843"
+          }
+        },
+        {
+          "client_id": "117943605976-mj4tsbdlj6cqnrh2dc8a7tknldpjr62u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC84jJUDKhjFjH83405K27xmQfTkJRjbMU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "117943605976-mj4tsbdlj6cqnrh2dc8a7tknldpjr62u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

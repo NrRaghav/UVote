@@ -75,13 +75,13 @@ public class LoginActivity extends AppCompatActivity {
 
                 // Successfully signed in
                 if (resultCode == RESULT_OK) {
-                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    startActivity(new Intent(LoginActivity.this,Register.class));
                     finish();
                 } else {
                     // Sign in failed
                     if (response == null) {
                         Snackbar.make(findViewById(android.R.id.content), R.string.sign_in_cancelled, Snackbar.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, LoginActivity.class));
+                        startActivity(new Intent(LoginActivity.this, Register.class));
                         finish();
                         return;
                     }
@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                                 .setAction("RETRY", new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        startActivity(new Intent(LoginActivity.this, LoginActivity.class));
+                                        startActivity(new Intent(LoginActivity.this, Register.class));
                                         finish();
 
                                     }

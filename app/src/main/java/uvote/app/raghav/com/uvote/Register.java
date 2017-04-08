@@ -8,20 +8,34 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import uvote.app.raghav.com.uvote.uvote.R;
 
 public class Register extends AppCompatActivity {
     AutoCompleteTextView regstu1;
     AutoCompleteTextView regsta1;
-
+    users user;
+    DatabaseReference mDatabase;
+    String uid;
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser mUser = mAuth.getCurrentUser();
+
+        if (mUser != null) {
+            // Name, email address, and profile photo Url
+            uid=mUser.getUid();}
 
         regstu1 = (AutoCompleteTextView)findViewById(R.id.regstu1);
         regsta1 = (AutoCompleteTextView)findViewById(R.id.regsta1);
-
+        mDatabase= FirebaseDatabase.getInstance().getReference().child("users");
         Button register = (Button)findViewById(R.id.register);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +64,11 @@ public class Register extends AppCompatActivity {
 
                 if (cancel == false)
                 {
+                    if(isEditTextEmpty(a)==true)
+                    {user=new users(b);}
+                    else
+                    {user=new users(a);}
+                    mDatabase.child(uid).setValue(user);
                     startActivity(new Intent(Register.this, MainActivity.class));
                 }
             }

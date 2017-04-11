@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import uvote.app.raghav.com.uvote.uvote.R;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseReference ref;
     users u = new users();
+    ArrayList<String> yea=new ArrayList<>();
+     ArrayList<String> no=new ArrayList<>();
     private DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,57 +54,48 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void populateViewHolder(SurveyHolder ViewHolder, final survey survey, int position)
             {
+
                 ViewHolder.yes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                    ArrayList<String> yea;
-                        ArrayList<String> no;
-                        yea=survey.getYes();
-                        no=survey.getNo();
-                        if (yea==null)
+                        HashMap<String,String> k=survey.getVotes();
+                        if (k!=null)
                         {
-                            yea=new ArrayList<String>();
-                            yea.add(u.getRno());
-                            ref.child(survey.getSid()).child("yea").setValue(yea);
+                            if (!k.containsKey(u.getRno()))
+                            {
+                                mDatabase.child("surveys").child(survey.getSid()).child("votes").child(u.getRno()).setValue("yes");
+                            }
+                            else Toast.makeText(MainActivity.this,"njlasdfcxz",Toast.LENGTH_SHORT).show();
                         }
-                        else if (!yea.contains(u.getRno())&&!no.contains(u.getRno())){
-                            yea.add(u.getRno());
-                            ref.child(survey.getSid()).child("yes").setValue(yea);
-                        }
-                        else
-                        {
-                            Toast.makeText(MainActivity.this, "You can only vote once!!",
-                                    Toast.LENGTH_SHORT).show();
-                        }
+                        else {
+                            mDatabase.child("surveys").child(survey.getSid()).child("votes").child(u.getRno()).setValue("yes");
 
 
-
+                        }
                     }
                 });
+
                 ViewHolder.no.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ArrayList<String> yea;
-                        ArrayList<String> no;
-                        yea=survey.getYes();
-                        no=survey.getNo();
-                        if (no==null)
+                        HashMap<String,String> k=survey.getVotes();
+                        if (k!=null)
                         {
-                            no=new ArrayList<String>();
-                            no.add(u.getRno());
-                            ref.child(survey.getSid()).child("no").setValue(no);
+                            if (!k.containsKey(u.getRno()))
+                            {
+                                mDatabase.child("surveys").child(survey.getSid()).child("votes").child(u.getRno()).setValue("no");
+                            }
+                            else Toast.makeText(MainActivity.this,"njlasxzdfcxz",Toast.LENGTH_SHORT).show();
                         }
-                        else if (!yea.contains(u.getRno())&&!no.contains(u.getRno())){
-                            no.add(u.getRno());
-                            ref.child(survey.getSid()).child("no").setValue(no);
-                        }
-                        else
-                        {
-                            Toast.makeText(MainActivity.this, "You can only vote once!!",
-                                    Toast.LENGTH_SHORT).show();
+                        else {
+                            mDatabase.child("surveys").child(survey.getSid()).child("votes").child(u.getRno()).setValue("no");
+
+
                         }
                     }
                 });
+
+
                 ViewHolder.tv.setText(survey.getDescription());
                 Glide.with(MainActivity.this).load(survey.getPicture()).into(ViewHolder.iv);
             }

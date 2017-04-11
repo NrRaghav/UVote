@@ -12,7 +12,11 @@ import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 
@@ -75,8 +79,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 // Successfully signed in
                 if (resultCode == RESULT_OK) {
-                    startActivity(new Intent(LoginActivity.this,Register.class));
-                    finish();
+                    checkuserexits();
                 } else {
                     // Sign in failed
                     if (response == null) {
@@ -113,4 +116,31 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         }
-    }
+    private void checkuserexits() {
+        final String userid = mAuth.getCurrentUser().getUid();
+
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.keepSynced(true);
+
+
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot datasnapshot) {
+                if (datasnapshot.child("users").hasChild(userid + "/rno")) {
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
+
+                }
+                else {
+                    startActivity(new Intent(LoginActivity.this, Register.class));
+                    finish();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }}

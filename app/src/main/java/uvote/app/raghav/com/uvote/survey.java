@@ -4,52 +4,69 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by Chirag on 10-Apr-17.
  */
 
 public class survey {
-    ImageView iv;
-    TextView tv;
-    Button yes;
-    Button no;
+    String picture;
+    String description;
+    ArrayList<String> yes;
+    ArrayList<String> no;
+    String surveyid;
 
-    public ImageView getIv() {
-        return iv;
+    public String getPicture() {
+        return picture;
     }
 
-    public void setIv(ImageView iv) {
-        this.iv = iv;
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
-    public TextView getTv() {
-        return tv;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTv(TextView tv) {
-        this.tv = tv;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Button getYes() {
+    public ArrayList<String> getYes() {
         return yes;
     }
 
-    public void setYes(Button yes) {
+    public void setYes(ArrayList<String> yes) {
         this.yes = yes;
     }
 
-    public Button getNo() {
+    public ArrayList<String> getNo() {
         return no;
     }
 
-    public void setNo(Button no) {
+    public void setNo(ArrayList<String> no) {
         this.no = no;
     }
 
-    public survey(ImageView iv, TextView tv, Button yes, Button no) {
-        this.iv = iv;
-        this.tv = tv;
+    public String getSurveyid() {
+        return surveyid;
+    }
+
+    public void setSurveyid(String surveyid) {
+        this.surveyid = surveyid;
+    }
+
+    public survey(String picture, String description, ArrayList<String> yes, ArrayList<String> no, String surveyid) {
+        this.picture = picture;
+        this.description = description;
         this.yes = yes;
         this.no = no;
+        this.surveyid = surveyid;
     }
+
+    public survey()
+    {}
+
+
 }

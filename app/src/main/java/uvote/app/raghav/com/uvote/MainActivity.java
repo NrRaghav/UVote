@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseIndexRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -16,12 +17,12 @@ import java.util.List;
 import uvote.app.raghav.com.uvote.uvote.R;
 
 public class MainActivity extends AppCompatActivity {
-    private FirebaseIndexRecyclerAdapter<survey, SurveyHolder> mAdapter;
+    private FirebaseRecyclerAdapter<survey, SurveyHolder> mAdapter;
     private List<survey> pli = new ArrayList<>();
     private SurveyAdapter s;
 
 
-    RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
+
     private RecyclerView.LayoutManager mLayoutManager;
 
     DatabaseReference ref;
@@ -30,16 +31,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
 
+        ref = FirebaseDatabase.getInstance().getReference().child("surveys");
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new FirebaseIndexRecyclerAdapter<survey,SurveyAdapter.SurveyHolder>(survey.class, R.layout.surveycard, SurveyAdapter.SurveyHolder.class, ref.orderByChild("name").startAt(newText.toUpperCase()).endAt(newText.toUpperCase()+"\uf8ff"),ref) {
+        mAdapter = new FirebaseRecyclerAdapter<survey,SurveyHolder>(survey.class, R.layout.surveycard, SurveyHolder.class, ref) {
             @Override
-            public void populateViewHolder(SurveyAdapter.SurveyHolder ViewHolder, final survey survey, int position) {
-                recyclerView.setAdapter(mAdapter);
+            public void populateViewHolder(SurveyHolder ViewHolder, final survey survey, int position) {
+                ViewHolder.tv.setText(survey.getDescription());
+                Glide.with(MainActivity.this).load(survey.getPicture()).into(ViewHolder.iv);
             }
         };
+        recyclerView.setAdapter(mAdapter);
 
 
 

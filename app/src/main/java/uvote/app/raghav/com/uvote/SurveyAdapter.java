@@ -37,8 +37,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyHolder> {
     @Override
     public void onBindViewHolder(SurveyHolder holder, int position) {
         final survey c=wList.get(holder.getAdapterPosition());
-        holder.tv.setText(c.getTv().toString());
-        Glide.with(mContext).load(survey.getIv()).into(holder.iv);
+
     }
 
     @Override

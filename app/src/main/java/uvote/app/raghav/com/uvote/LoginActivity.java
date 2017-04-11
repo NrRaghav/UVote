@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                     // Sign in failed
                     if (response == null) {
                         Snackbar.make(findViewById(android.R.id.content), R.string.sign_in_cancelled, Snackbar.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, Register.class));
+                        startActivity(new Intent(LoginActivity.this, LoginActivity.class));
                         finish();
                         return;
                     }
@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                                 .setAction("RETRY", new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        startActivity(new Intent(LoginActivity.this, Register.class));
+                                        startActivity(new Intent(LoginActivity.this, LoginActivity.class));
                                         finish();
 
                                     }

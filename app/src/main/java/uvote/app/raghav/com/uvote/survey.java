@@ -15,7 +15,7 @@ public class survey {
     String description;
     ArrayList<String> yes;
     ArrayList<String> no;
-    String surveyid;
+    String sid;
 
     public String getPicture() {
         return picture;
@@ -49,24 +49,24 @@ public class survey {
         this.no = no;
     }
 
-    public String getSurveyid() {
-        return surveyid;
-    }
 
-    public void setSurveyid(String surveyid) {
-        this.surveyid = surveyid;
-    }
 
-    public survey(String picture, String description, ArrayList<String> yes, ArrayList<String> no, String surveyid) {
+    public survey(String picture, String description, ArrayList<String> yes, ArrayList<String> no, String sid) {
         this.picture = picture;
         this.description = description;
         this.yes = yes;
         this.no = no;
-        this.surveyid = surveyid;
+        this.sid = sid;
     }
 
     public survey()
     {}
 
+    public String getSid() {
+        return sid;
+    }
 
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
 }

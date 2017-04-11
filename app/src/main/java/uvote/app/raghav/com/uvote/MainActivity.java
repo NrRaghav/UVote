@@ -58,9 +58,15 @@ public class MainActivity extends AppCompatActivity {
                         ArrayList<String> no;
                         yea=survey.getYes();
                         no=survey.getNo();
-                        if (!yea.contains(u.getRno())&&!no.contains(u.getRno())){
+                        if (yea==null)
+                        {
+                            yea=new ArrayList<String>();
                             yea.add(u.getRno());
-                            ref.child(survey.getSurveyid()).child("yes").setValue(yea);
+                            ref.child(survey.getSid()).child("yea").setValue(yea);
+                        }
+                        else if (!yea.contains(u.getRno())&&!no.contains(u.getRno())){
+                            yea.add(u.getRno());
+                            ref.child(survey.getSid()).child("yes").setValue(yea);
                         }
                         else
                         {
@@ -79,9 +85,15 @@ public class MainActivity extends AppCompatActivity {
                         ArrayList<String> no;
                         yea=survey.getYes();
                         no=survey.getNo();
-                        if (!yea.contains(u.getRno())&&!no.contains(u.getRno())){
+                        if (no==null)
+                        {
+                            no=new ArrayList<String>();
                             no.add(u.getRno());
-                            ref.child(survey.getSurveyid()).child("no").setValue(no);
+                            ref.child(survey.getSid()).child("no").setValue(no);
+                        }
+                        else if (!yea.contains(u.getRno())&&!no.contains(u.getRno())){
+                            no.add(u.getRno());
+                            ref.child(survey.getSid()).child("no").setValue(no);
                         }
                         else
                         {
